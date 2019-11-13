@@ -18,10 +18,12 @@ def pretty_pslist(plist, fields=None):
     header = " ".join([(r"%-"+("%d" % f[2]) + "s") % f[1] for f in fields])
     headli = " ".join(["-" * f[2] for f in fields])
     proto  = " ".join([(r"%-"+("%d" % f[2]) + "s") for f in fields])
-    print(header)
-    print(headli)
+    ret = []
+    ret.append(header)
+    ret.append(headli)
     for ps in plist:
-        print(proto % tuple([getattr(ps, f[0]) for f in fields]))
+        ret.append(proto % tuple([getattr(ps, f[0]) for f in fields]))
+    return "\n".join(ret)
 
 
 # Implemente la función pslist()
